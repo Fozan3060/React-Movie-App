@@ -1,9 +1,12 @@
 import './App.css';
+import Header from './components/complex/Header/Header';
 
 function App() {
   return (
     <>
-      <h1>Weahter App</h1>
+      <Header>
+        <h1>Weather App</h1>
+      </Header>
     </>
   );
 }
