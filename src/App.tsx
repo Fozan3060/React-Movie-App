@@ -5,6 +5,7 @@ import Input from './components/shared/Input/Input';
 import LeftBar from './components/complex/LeftBar/LeftBar';
 import Container from './components/complex/Container/Container';
 import Rightbar from './components/complex/RightBar/RightBar';
+import Logo from './components/shared/Logo/Logo';
 
 function App() {
   const [name, setname] = useState('');
@@ -12,7 +13,7 @@ function App() {
   return (
     <>
       <Header>
-        <h1 className="text-xl">Weather App</h1>
+        <Logo />
         <Input
           setname={setname}
           name={name}
