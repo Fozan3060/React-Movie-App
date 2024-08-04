@@ -16,3 +16,25 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 10px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #414040;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #9f62dc;
+    border-radius: 100vh;
+    border: 1px solid #393939;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #8f54ca;
+  }
+}

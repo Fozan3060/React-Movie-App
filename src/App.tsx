@@ -2,6 +2,9 @@ import { useState } from 'react';
 import './App.css';
 import Header from './components/complex/Header/Header';
 import Input from './components/shared/Input/Input';
+import LeftBar from './components/complex/LeftBar/LeftBar';
+import Container from './components/complex/Container/Container';
+import Rightbar from './components/complex/RightBar/RightBar';
 
 function App() {
   const [name, setname] = useState('');
@@ -19,6 +22,14 @@ function App() {
         />
         <h1 className="text-xl">Found 0 results</h1>
       </Header>
+      <Container>
+        <LeftBar>
+          <h1>Searched Movies</h1>
+        </LeftBar>
+        <Rightbar>
+          <h1>Favorites</h1>
+        </Rightbar>
+      </Container>
     </>
   );
 }
