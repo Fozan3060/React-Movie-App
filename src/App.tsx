@@ -8,6 +8,7 @@ import Rightbar from './components/complex/RightBar/RightBar';
 import Logo from './components/shared/Logo/Logo';
 import CustomStar from './components/shared/CustomStarRating/CustomStarRating';
 import Results from './components/compound/Results/Results';
+import Movielist from './components/complex/Movielist/Movielist';
 
 function App() {
   const [name, setname] = useState('');
@@ -27,7 +28,7 @@ function App() {
       </Header>
       <Container>
         <LeftBar>
-          <h1>Searched Movies</h1>
+          <Movielist />
         </LeftBar>
         <Rightbar>
           <h1>Favorites</h1>
