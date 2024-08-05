@@ -6,10 +6,11 @@ import LeftBar from './components/complex/LeftBar/LeftBar';
 import Container from './components/complex/Container/Container';
 import Rightbar from './components/complex/RightBar/RightBar';
 import Logo from './components/shared/Logo/Logo';
+import CustomStar from './components/shared/CustomStarRating/CustomStarRating';
 
 function App() {
   const [name, setname] = useState('');
-
+  const [rating, setRating] = useState(0);
   return (
     <>
       <Header>
@@ -29,6 +30,10 @@ function App() {
         </LeftBar>
         <Rightbar>
           <h1>Favorites</h1>
+          <div className="flex gap-2">
+            <CustomStar length="10" rating={rating} setRating={setRating} />
+            <span>{rating}</span>
+          </div>
         </Rightbar>
       </Container>
     </>
