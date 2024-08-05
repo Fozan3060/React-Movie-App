@@ -7,6 +7,7 @@ import Container from './components/complex/Container/Container';
 import Rightbar from './components/complex/RightBar/RightBar';
 import Logo from './components/shared/Logo/Logo';
 import CustomStar from './components/shared/CustomStarRating/CustomStarRating';
+import Results from './components/compound/Results/Results';
 
 function App() {
   const [name, setname] = useState('');
@@ -22,7 +23,7 @@ function App() {
              hover:shadow-lg placeholder-slate-300 hover:-translate-y-0.5 focus:-translate-y-0.5  focus:shadow-xl"
           placeholder="Search Movie"
         />
-        <h1 className="text-xl">Found 0 results</h1>
+        <Results />
       </Header>
       <Container>
         <LeftBar>
