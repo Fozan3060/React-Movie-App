@@ -33,12 +33,17 @@ interface MovieContextProviderProps {
   children: ReactNode;
 }
 
+const initialValue = localStorage.getItem('WatchList');
+const parsedInitialValue = initialValue ? JSON.parse(initialValue) : [];
+
 export const MovieContextProvider = ({
   children,
 }: MovieContextProviderProps) => {
   const [name, setName] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
-  const [watchMovieslist, setwatchMovieslist] = useState<MovieItem[]>([]);
+  const [watchMovieslist, setwatchMovieslist] = useState<MovieItem[]>(
+    () => parsedInitialValue
+  );
   const handleClose = () => {
     setSelected('');
   };
