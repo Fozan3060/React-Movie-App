@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 interface ButtonProps {
   icon?: ReactNode;
-  description?: string;
+  description: string;
   className?: string;
   children?: ReactNode;
   onclick?: () => void;
@@ -10,7 +10,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({
   icon,
-  description = 'Button',
+  description = '',
   className = 'bg-slate-200 p-2 text-black rounded-md',
   children,
   onclick,

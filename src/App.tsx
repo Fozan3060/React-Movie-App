@@ -5,13 +5,13 @@ import LeftBar from './components/complex/LeftBar/LeftBar';
 import Container from './components/complex/Container/Container';
 import Rightbar from './components/complex/RightBar/RightBar';
 import Logo from './components/shared/Logo/Logo';
-import CustomStar from './components/shared/CustomStarRating/CustomStarRating';
 import Results from './components/compound/Results/Results';
 import Movielist from './components/complex/Movielist/Movielist';
 import { useMovie } from './Context/ReactMovieContext';
+import SelectedMovieDetails from './components/compound/SelectedMovieDetails/SelectedMovieDetails';
 
 function App() {
-  const { setName, name, rating, setRating } = useMovie();
+  const { setName, name } = useMovie();
   return (
     <>
       <Header>
@@ -30,11 +30,7 @@ function App() {
           <Movielist />
         </LeftBar>
         <Rightbar>
-          <h1>Favorites</h1>
-          <div className="flex gap-2">
-            <CustomStar length="10" rating={rating} setRating={setRating} />
-            <span>{rating}</span>
-          </div>
+          <SelectedMovieDetails />
         </Rightbar>
       </Container>
     </>
