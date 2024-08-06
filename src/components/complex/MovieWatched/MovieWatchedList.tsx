@@ -3,6 +3,7 @@ import MovieItem from '../../compound/MovieItem/MovieItem';
 
 const MovieWatchedList = () => {
   const { watchMovieslist } = useMovie();
+  localStorage.setItem('WatchList', JSON.stringify(watchMovieslist));
 
   return (
     <div>
