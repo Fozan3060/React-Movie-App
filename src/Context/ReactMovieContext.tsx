@@ -10,8 +10,6 @@ import {
 interface MovieContextType {
   name: string;
   setName: (name: string) => void;
-  rating: number;
-  setRating: (rating: number) => void;
   selected: string;
   setSelected: (selected: string) => void;
   watchMovieslist: MovieItem[];
@@ -39,7 +37,6 @@ export const MovieContextProvider = ({
 }: MovieContextProviderProps) => {
   const [name, setName] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
-  const [rating, setRating] = useState<number>(0);
   const [watchMovieslist, setwatchMovieslist] = useState<MovieItem[]>([]);
   const handleClose = () => {
     setSelected('');
@@ -49,8 +46,6 @@ export const MovieContextProvider = ({
       value={{
         name,
         setName,
-        rating,
-        setRating,
         selected,
         setSelected,
         watchMovieslist,

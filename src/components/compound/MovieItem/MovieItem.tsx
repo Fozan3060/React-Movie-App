@@ -45,7 +45,7 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type }) => {
               <RiUserStarFill color="yellow" />
               {movie.userRating}
               <CgTime />
-              {movie.Runtime} min
+              {movie.Runtime}
             </>
           )}
         </div>

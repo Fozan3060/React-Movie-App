@@ -31,7 +31,11 @@ function App() {
           <Movielist />
         </LeftBar>
         <Rightbar>
-          {selected ? <SelectedMovieDetails /> : <MovieWatchedList />}
+          {selected ? (
+            <SelectedMovieDetails key={selected} />
+          ) : (
+            <MovieWatchedList />
+          )}
         </Rightbar>
       </Container>
     </>

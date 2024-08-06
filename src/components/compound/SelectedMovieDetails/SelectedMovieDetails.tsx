@@ -6,6 +6,7 @@ import { useMovie } from '../../../Context/ReactMovieContext';
 import Button from '../../shared/Button/Button';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { useState } from 'react';
 
 interface MovieDetailsResponse {
   Poster: string;
@@ -25,14 +26,10 @@ const fetchMovieDetails = async (selected: string) => {
 };
 
 const SelectedMovieDetails = () => {
-  const {
-    rating,
-    setRating,
-    selected,
-    setwatchMovieslist,
-    watchMovieslist,
-    handleClose,
-  } = useMovie();
+  const { selected, setwatchMovieslist, watchMovieslist, handleClose } =
+    useMovie();
+  const [rating, setRating] = useState<number>(0);
+
   const addToFav = (data: MovieDetailsResponse) => {
     const obj = {
       imdbID: selected,
@@ -112,7 +109,12 @@ const SelectedMovieDetails = () => {
             description="Remove From Favourites"
           />
 
-          <CustomStar length="10" setRating={setRating} rating={rating} />
+          <CustomStar
+            key={selected}
+            length="10"
+            setRating={setRating}
+            rating={rating}
+          />
           <h1 className="text-center flex items-center m-auto mt-2 gap-2  ">
             <span className="text-purple-600 ">{rating} </span>{' '}
             {<BiSolidStar size={20} className="text-yellow-400" />}
