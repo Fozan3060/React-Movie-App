@@ -46,11 +46,17 @@ const Movielist = () => {
       </h1>
     );
   }
-
+  if (!name) {
+    return (
+      <h1 className="text-center mt-20 text-2xl font-semibold">
+        ⛔ No Movies Searched
+      </h1>
+    );
+  }
   if (!data || !data.Search) {
     return (
       <h1 className="text-center mt-20 text-2xl font-semibold">
-        No Movies Found
+        ⛔ No Movies Found
       </h1>
     );
   }

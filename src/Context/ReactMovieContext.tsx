@@ -1,4 +1,11 @@
-import { useContext, createContext, useState, ReactNode } from 'react';
+import {
+  useContext,
+  createContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 
 interface MovieContextType {
   name: string;
@@ -7,6 +14,17 @@ interface MovieContextType {
   setRating: (rating: number) => void;
   selected: string;
   setSelected: (selected: string) => void;
+  watchMovieslist: MovieItem[];
+  setwatchMovieslist: Dispatch<SetStateAction<MovieItem[]>>;
+}
+interface MovieItem {
+  Poster: string;
+  Title: string;
+  imdbID: string;
+  Released: string;
+  Runtime: string;
+  imdbRating: string;
+  userRating: number;
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
@@ -21,7 +39,7 @@ export const MovieContextProvider = ({
   const [name, setName] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
   const [rating, setRating] = useState<number>(0);
-
+  const [watchMovieslist, setwatchMovieslist] = useState<MovieItem[]>([]);
   return (
     <MovieContext.Provider
       value={{
@@ -31,6 +49,8 @@ export const MovieContextProvider = ({
         setRating,
         selected,
         setSelected,
+        watchMovieslist,
+        setwatchMovieslist,
       }}
     >
       {children}

@@ -11,7 +11,7 @@ import { useMovie } from './Context/ReactMovieContext';
 import SelectedMovieDetails from './components/compound/SelectedMovieDetails/SelectedMovieDetails';
 
 function App() {
-  const { setName, name } = useMovie();
+  const { setName, name, selected } = useMovie();
   return (
     <>
       <Header>
@@ -29,9 +29,7 @@ function App() {
         <LeftBar>
           <Movielist />
         </LeftBar>
-        <Rightbar>
-          <SelectedMovieDetails />
-        </Rightbar>
+        <Rightbar>{selected && <SelectedMovieDetails />}</Rightbar>
       </Container>
     </>
   );
