@@ -12,7 +12,7 @@ interface MovieData {
   Runtime?: string;
   imdbRating?: string;
   userRating?: number;
-  Year: string;
+  Year?: string;
 }
 
 interface MovieItemProps {
