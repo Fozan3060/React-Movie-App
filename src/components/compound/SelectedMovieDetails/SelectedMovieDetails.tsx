@@ -28,7 +28,7 @@ const fetchMovieDetails = async (selected: string) => {
 const SelectedMovieDetails = () => {
   const { selected, setwatchMovieslist, watchMovieslist, handleClose } =
     useMovie();
-  const [rating, setRating] = useState<number>(0);
+  // const [rating, setRating] = useState<number>(0);
 
   const addToFav = (data: MovieDetailsResponse) => {
     const obj = {
@@ -43,12 +43,25 @@ const SelectedMovieDetails = () => {
     setwatchMovieslist((prev) => [...prev, obj]);
     handleClose();
   };
+
+  const RemoveFromFav = () => {
+    setwatchMovieslist((prev) =>
+      prev.filter((movie) => movie.imdbID !== selected)
+    );
+    handleClose();
+  };
+
   console.log(watchMovieslist);
   const { data, isLoading, isError } = useQuery<MovieDetailsResponse>({
     queryKey: ['FetchMovieDetails', selected],
     queryFn: () => fetchMovieDetails(selected),
     enabled: !!selected,
   });
+  const selectedMovie =
+    watchMovieslist.find((movie) => movie.imdbID === selected) ||
+    watchMovieslist.find((movie) => movie.imdbID === data?.imdbID);
+  const UserRating = selectedMovie ? selectedMovie.userRating : 0;
+  const [rating, setRating] = useState(UserRating);
 
   if (isLoading) {
     return (
@@ -98,16 +111,19 @@ const SelectedMovieDetails = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center mt-5 ">
-          <Button
-            onclick={() => addToFav(data)}
-            className="rounded-2xl mb-5 font-semibold bg-purple-600 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
-            description="Add To Favourites"
-          />
-          <Button
-            onclick={() => console.log('Remove fav')}
-            className="rounded-2xl mb-5 font-semibold bg-red-500 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
-            description="Remove From Favourites"
-          />
+          {selectedMovie ? (
+            <Button
+              onclick={() => RemoveFromFav()}
+              className="rounded-2xl mb-5 font-semibold bg-red-500 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
+              description="Remove From Favourites"
+            />
+          ) : (
+            <Button
+              onclick={() => addToFav(data)}
+              className="rounded-2xl mb-5 font-semibold bg-purple-600 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
+              description="Add To Favourites"
+            />
+          )}
 
           <CustomStar
             key={selected}
@@ -115,9 +131,11 @@ const SelectedMovieDetails = () => {
             setRating={setRating}
             rating={rating}
           />
+
           <h1 className="text-center flex items-center m-auto mt-2 gap-2  ">
+            {selectedMovie ? 'You Rated : ' : 'Rating : '}
             <span className="text-purple-600 ">{rating} </span>{' '}
-            {<BiSolidStar size={20} className="text-yellow-400" />}
+            {<BiSolidStar size={20} className="text-yellow-500" />}
           </h1>
         </div>
       </>
