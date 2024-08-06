@@ -5,6 +5,8 @@ interface MovieContextType {
   setName: (name: string) => void;
   rating: number;
   setRating: (rating: number) => void;
+  selected: string;
+  setSelected: (selected: string) => void;
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
@@ -17,6 +19,7 @@ export const MovieContextProvider = ({
   children,
 }: MovieContextProviderProps) => {
   const [name, setName] = useState<string>('');
+  const [selected, setSelected] = useState<string>('');
   const [rating, setRating] = useState<number>(0);
 
   return (
@@ -26,6 +29,8 @@ export const MovieContextProvider = ({
         setName,
         rating,
         setRating,
+        selected,
+        setSelected,
       }}
     >
       {children}
