@@ -13,7 +13,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
     'react-refresh/only-export-components': [
-      'warn',
+      'off',
       { allowConstantExport: true },
     ],
   },

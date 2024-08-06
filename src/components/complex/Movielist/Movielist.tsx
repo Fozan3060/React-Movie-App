@@ -1,3 +1,4 @@
+import { useMovie } from '../../../Context/ReactMovieContext';
 import MovieItems from '../../compound/MovieItems/MovieItems';
 
 const moviedata = [
@@ -20,8 +21,11 @@ const moviedata = [
 ];
 
 const Movielist = () => {
+  const { name } = useMovie();
+
   return (
     <div>
+      <h1>{name}</h1>
       {moviedata.map((movie) => (
         <MovieItems movie={movie} type="NonWatched" />
       ))}
