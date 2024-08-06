@@ -9,6 +9,7 @@ import Results from './components/compound/Results/Results';
 import Movielist from './components/complex/Movielist/Movielist';
 import { useMovie } from './Context/ReactMovieContext';
 import SelectedMovieDetails from './components/compound/SelectedMovieDetails/SelectedMovieDetails';
+import MovieWatchedList from './components/complex/MovieWatched/MovieWatchedList';
 
 function App() {
   const { setName, name, selected } = useMovie();
@@ -29,7 +30,9 @@ function App() {
         <LeftBar>
           <Movielist />
         </LeftBar>
-        <Rightbar>{selected && <SelectedMovieDetails />}</Rightbar>
+        <Rightbar>
+          {selected ? <SelectedMovieDetails /> : <MovieWatchedList />}
+        </Rightbar>
       </Container>
     </>
   );

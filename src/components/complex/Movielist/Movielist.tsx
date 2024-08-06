@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { useMovie } from '../../../Context/ReactMovieContext';
-import MovieItems from '../../compound/MovieItems/MovieItems';
+import MovieItem from '../../compound/MovieItem/MovieItem';
 import { useQuery } from '@tanstack/react-query';
 
 interface MovieItem {
   Poster: string;
   Title: string;
   Type: string;
-  Year: string;
+  Released: string;
   imdbID: string;
+  Year: string;
 }
 
 interface MovieResponse {
@@ -64,7 +65,7 @@ const Movielist = () => {
   return (
     <div>
       {data.Search.map((item) => (
-        <MovieItems key={item.imdbID} type="NonWatched" movie={item} />
+        <MovieItem key={item.imdbID} type="NonWatched" movie={item} />
       ))}
     </div>
   );

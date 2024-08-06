@@ -16,6 +16,7 @@ interface MovieContextType {
   setSelected: (selected: string) => void;
   watchMovieslist: MovieItem[];
   setwatchMovieslist: Dispatch<SetStateAction<MovieItem[]>>;
+  handleClose: () => void;
 }
 interface MovieItem {
   Poster: string;
@@ -40,6 +41,9 @@ export const MovieContextProvider = ({
   const [selected, setSelected] = useState<string>('');
   const [rating, setRating] = useState<number>(0);
   const [watchMovieslist, setwatchMovieslist] = useState<MovieItem[]>([]);
+  const handleClose = () => {
+    setSelected('');
+  };
   return (
     <MovieContext.Provider
       value={{
@@ -51,6 +55,7 @@ export const MovieContextProvider = ({
         setSelected,
         watchMovieslist,
         setwatchMovieslist,
+        handleClose,
       }}
     >
       {children}

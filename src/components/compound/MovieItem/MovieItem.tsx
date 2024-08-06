@@ -1,23 +1,29 @@
 import React from 'react';
-import { BsCalendar2 } from 'react-icons/bs';
+import { BsCalendar2, BsStarFill } from 'react-icons/bs';
 import { useMovie } from '../../../Context/ReactMovieContext';
+import { RiUserStarFill } from 'react-icons/ri';
+import { CgTime } from 'react-icons/cg';
 
 interface MovieData {
   Poster: string;
   Title: string;
-  Type: string;
-  Year: string;
+  Released: string;
   imdbID: string;
+  Runtime?: string;
+  imdbRating?: string;
+  userRating?: number;
+  Year: string;
 }
 
-interface MovieItemsProps {
+interface MovieItemProps {
   movie: MovieData;
   type: string;
 }
 
-const MovieItems: React.FC<MovieItemsProps> = ({ movie, type }) => {
+const MovieItem: React.FC<MovieItemProps> = ({ movie, type }) => {
   const { setSelected, selected } = useMovie();
-  console.log(selected);
+
+  console.log(selected, movie);
   return (
     <div
       onClick={() => setSelected(movie.imdbID)}
@@ -32,10 +38,20 @@ const MovieItems: React.FC<MovieItemsProps> = ({ movie, type }) => {
               <BsCalendar2 /> {movie.Year}
             </>
           )}
+          {type == 'Watched' && (
+            <>
+              <BsStarFill color="yellow" />
+              {movie.imdbRating}
+              <RiUserStarFill color="yellow" />
+              {movie.userRating}
+              <CgTime />
+              {movie.Runtime} min
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default MovieItems;
+export default MovieItem;

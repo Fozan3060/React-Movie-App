@@ -25,8 +25,14 @@ const fetchMovieDetails = async (selected: string) => {
 };
 
 const SelectedMovieDetails = () => {
-  const { rating, setRating, selected, setwatchMovieslist, watchMovieslist } =
-    useMovie();
+  const {
+    rating,
+    setRating,
+    selected,
+    setwatchMovieslist,
+    watchMovieslist,
+    handleClose,
+  } = useMovie();
   const addToFav = (data: MovieDetailsResponse) => {
     const obj = {
       imdbID: selected,
@@ -38,6 +44,7 @@ const SelectedMovieDetails = () => {
       userRating: rating,
     };
     setwatchMovieslist((prev) => [...prev, obj]);
+    handleClose();
   };
   console.log(watchMovieslist);
   const { data, isLoading, isError } = useQuery<MovieDetailsResponse>({
@@ -65,7 +72,7 @@ const SelectedMovieDetails = () => {
       <>
         <div className="bg-zinc-700 z-20  bg-opacity-20 rounded-md ">
           <Button
-            onclick={() => console.log('close')}
+            onclick={() => handleClose()}
             className="border bg-white absolute rounded-full hover:transition-all duration-200 hover:translate-x-2"
             description=""
             icon={<GoArrowLeft size={26} color="black" />}
