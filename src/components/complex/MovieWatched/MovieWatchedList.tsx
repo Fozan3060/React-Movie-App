@@ -8,10 +8,14 @@ const MovieWatchedList = () => {
     <div>
       {watchMovieslist.length !== 0 ? (
         watchMovieslist.map((item, index) => {
-          return <MovieItem key={index} type={'Watched'} movie={item} />;
+          return (
+            <>
+              <MovieItem key={index} type={'Watched'} movie={item} />
+            </>
+          );
         })
       ) : (
-        <h1 className="text-center font-bold text-2xl mt-5">
+        <h1 className="text-center mt-20 text-2xl font-semibold">
           No movies in the list
         </h1>
       )}

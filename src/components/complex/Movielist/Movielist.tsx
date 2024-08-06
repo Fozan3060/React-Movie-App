@@ -50,7 +50,7 @@ const Movielist = () => {
   if (!name) {
     return (
       <h1 className="text-center mt-20 text-2xl font-semibold">
-        ⛔ No Movies Searched
+        No Movies Searched
       </h1>
     );
   }

@@ -26,9 +26,13 @@ const fetchMovieDetails = async (selected: string) => {
 };
 
 const SelectedMovieDetails = () => {
-  const { selected, setwatchMovieslist, watchMovieslist, handleClose } =
-    useMovie();
-  // const [rating, setRating] = useState<number>(0);
+  const {
+    selected,
+    setwatchMovieslist,
+    watchMovieslist,
+    handleClose,
+    RemoveFromFav,
+  } = useMovie();
 
   const addToFav = (data: MovieDetailsResponse) => {
     const obj = {
@@ -44,13 +48,19 @@ const SelectedMovieDetails = () => {
     handleClose();
   };
 
-  const RemoveFromFav = () => {
-    setwatchMovieslist((prev) =>
-      prev.filter((movie) => movie.imdbID !== selected)
-    );
-    handleClose();
+  const ChangeRating = () => {
+    const newobj = watchMovieslist.find((movie) => movie.imdbID === selected);
+    if (newobj) {
+      newobj.userRating = rating;
+      setwatchMovieslist((prev) =>
+        prev.map((movie) =>
+          movie.imdbID === selected
+            ? { ...movie, userRating: rating }
+            : { ...movie }
+        )
+      );
+    }
   };
-
   console.log(watchMovieslist);
   const { data, isLoading, isError } = useQuery<MovieDetailsResponse>({
     queryKey: ['FetchMovieDetails', selected],
@@ -124,7 +134,14 @@ const SelectedMovieDetails = () => {
               description="Add To Favourites"
             />
           )}
-
+          {selectedMovie && rating !== selectedMovie.userRating && (
+            <button
+              onClick={() => ChangeRating()}
+              className="rounded-2xl mt-2 mb-5 font-semibold bg-purple-700 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
+            >
+              Rate Again
+            </button>
+          )}
           <CustomStar
             key={selected}
             length="10"

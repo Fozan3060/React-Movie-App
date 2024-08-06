@@ -15,8 +15,9 @@ interface MovieContextType {
   watchMovieslist: MovieItem[];
   setwatchMovieslist: Dispatch<SetStateAction<MovieItem[]>>;
   handleClose: () => void;
+  RemoveFromFav: () => void;
 }
-interface MovieItem {
+export interface MovieItem {
   Poster: string;
   Title: string;
   imdbID: string;
@@ -41,6 +42,12 @@ export const MovieContextProvider = ({
   const handleClose = () => {
     setSelected('');
   };
+  const RemoveFromFav = () => {
+    setwatchMovieslist((prev) =>
+      prev.filter((movie) => movie.imdbID !== selected)
+    );
+    handleClose();
+  };
   return (
     <MovieContext.Provider
       value={{
@@ -51,6 +58,7 @@ export const MovieContextProvider = ({
         watchMovieslist,
         setwatchMovieslist,
         handleClose,
+        RemoveFromFav,
       }}
     >
       {children}
