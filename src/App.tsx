@@ -10,9 +10,30 @@ import Movielist from './components/complex/Movielist/Movielist';
 import { useMovie } from './Context/ReactMovieContext';
 import SelectedMovieDetails from './components/compound/SelectedMovieDetails/SelectedMovieDetails';
 import MovieWatchedList from './components/complex/MovieWatched/MovieWatchedList';
+import { useEffect, useRef } from 'react';
 
 function App() {
   const { setName, name, selected } = useMovie();
+  const inputElementRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Enter' && inputElementRef.current) {
+        inputElementRef.current.focus();
+      }
+    };
+
+    if (inputElementRef.current) {
+      console.log(inputElementRef.current.value);
+      inputElementRef.current.focus();
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
   return (
     <>
       <Header>
@@ -23,6 +44,7 @@ function App() {
           className="bg-violet-500 text-xl outline-none text-white md:w-96  w-[15rem] sm:w-[18rem] h-10 rounded-md px-3 transform transition-all duration-300 ease-in-out
              hover:shadow-lg placeholder-slate-300 hover:-translate-y-0.5 focus:-translate-y-0.5  focus:shadow-xl"
           placeholder="Search Movie"
+          ref={inputElementRef}
         />
         <Results />
       </Header>
