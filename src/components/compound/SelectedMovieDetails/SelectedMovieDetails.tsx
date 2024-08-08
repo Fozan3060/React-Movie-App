@@ -4,7 +4,7 @@ import { GoArrowLeft } from 'react-icons/go';
 import CustomStar from '../../shared/CustomStarRating/CustomStarRating';
 import { useMovie } from '../../../Context/ReactMovieContext';
 import Button from '../../shared/Button/Button';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -62,10 +62,9 @@ const SelectedMovieDetails = () => {
     }
   };
   console.log(watchMovieslist);
-  const { data, isLoading, isError } = useQuery<MovieDetailsResponse>({
+  const { data } = useSuspenseQuery<MovieDetailsResponse>({
     queryKey: ['FetchMovieDetails', selected],
     queryFn: () => fetchMovieDetails(selected),
-    enabled: !!selected,
   });
   const selectedMovie =
     watchMovieslist.find((movie) => movie.imdbID === selected) ||
@@ -73,20 +72,6 @@ const SelectedMovieDetails = () => {
   const UserRating = selectedMovie ? selectedMovie.userRating : 0;
   const [rating, setRating] = useState(UserRating);
 
-  if (isLoading) {
-    return (
-      <h1 className="flex justify-center mx-auto text-center mt-20 text-2xl font-semibold">
-        Loading ....
-      </h1>
-    );
-  }
-  if (isError) {
-    return (
-      <h1 className="flex justify-center text-red-500 mx-auto text-center mt-20 text-2xl font-semibold">
-        ⛔ Something Went Wrong
-      </h1>
-    );
-  }
   if (data)
     return (
       <>
