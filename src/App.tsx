@@ -12,6 +12,7 @@ import SelectedMovieDetails from './components/compound/SelectedMovieDetails/Sel
 import MovieWatchedList from './components/complex/MovieWatched/MovieWatchedList';
 import { Suspense, useEffect, useRef } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorDisplay } from './components/shared/ErrorDisplay/ErrorDisplay';
 
 function App() {
   const { setName, name, selected } = useMovie();
@@ -51,14 +52,7 @@ function App() {
       </Header>
       <Container>
         <LeftBar>
-          <ErrorBoundary
-            fallback={
-              <h1 className="text-center mt-20 text-2xl font-semibold">
-                Something Went Wrong ⛔
-              </h1>
-            }
-            resetKeys={[name]}
-          >
+          <ErrorBoundary fallback={<ErrorDisplay />} resetKeys={[name]}>
             <Suspense
               fallback={
                 <h1 className="text-center mt-20 text-2xl font-semibold">
@@ -79,14 +73,7 @@ function App() {
           </ErrorBoundary>
         </LeftBar>
         <Rightbar>
-          <ErrorBoundary
-            fallback={
-              <h1 className="text-center mt-20 text-2xl font-semibold">
-                Something Went Wrong ⛔
-              </h1>
-            }
-            resetKeys={[name]}
-          >
+          <ErrorBoundary fallback={<ErrorDisplay />} resetKeys={[name]}>
             <Suspense
               fallback={
                 <h1 className="text-center mt-20 text-2xl font-semibold">
