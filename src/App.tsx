@@ -14,6 +14,7 @@ import { Suspense, useEffect, useRef } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorDisplay } from './components/shared/ErrorDisplay/ErrorDisplay';
 import Loader from './components/shared/Loader/Loader';
+import { SelectedMovieSkeleton } from './components/compound/SelectedMovieSkeleton/SelectedMovieSkeleton';
 
 function App() {
   const { setName, name, selected } = useMovie();
@@ -69,13 +70,7 @@ function App() {
         </LeftBar>
         <Rightbar>
           <ErrorBoundary fallback={<ErrorDisplay />} resetKeys={[name]}>
-            <Suspense
-              fallback={
-                <h1 className="text-center mt-20 text-2xl font-semibold">
-                  Loading ....
-                </h1>
-              }
-            >
+            <Suspense fallback={<SelectedMovieSkeleton />}>
               {selected ? (
                 <SelectedMovieDetails key={selected} />
               ) : (
