@@ -16,6 +16,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorDisplay } from './components/shared/ErrorDisplay/ErrorDisplay';
 import Loader from './components/shared/Loader/Loader';
 import { SelectedMovieSkeleton } from './components/compound/SelectedMovieSkeleton/SelectedMovieSkeleton';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const { setName, name, selected } = useMovie();
@@ -70,16 +71,22 @@ function App() {
           </ErrorBoundary>
         </LeftBar>
         <Rightbar>
-          <ErrorBoundary fallback={<ErrorDisplay />} resetKeys={[name]}>
-            <Suspense fallback={<SelectedMovieSkeleton />}>
-              {selected ? (
-                <SelectedMovieDetails key={selected} />
-              ) : (
-                <>
-                  <WatchedMovieSummary />
-                  <MovieWatchedList />
-                </>
-              )}
+          <ErrorBoundary
+            key={'2'}
+            fallback={<ErrorDisplay />}
+            resetKeys={[name]}
+          >
+            <Suspense key={'1'} fallback={<SelectedMovieSkeleton />}>
+              <AnimatePresence>
+                {selected ? (
+                  <SelectedMovieDetails key={selected} />
+                ) : (
+                  <>
+                    <WatchedMovieSummary key={'3'} />
+                    <MovieWatchedList key={'4'} />
+                  </>
+                )}
+              </AnimatePresence>
             </Suspense>
           </ErrorBoundary>
         </Rightbar>

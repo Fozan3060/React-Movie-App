@@ -5,7 +5,7 @@ interface Rightbar {
 }
 const Rightbar: React.FC<Rightbar> = ({ children }) => {
   return (
-    <div className="bg-zinc-800 scrollbar w-[95%] sm:w-[27rem] overflow-y-auto h-[35rem] rounded-md">
+    <div className="bg-zinc-800 relative scrollbar w-[95%] sm:w-[27rem] overflow-y-auto h-[35rem] rounded-md">
       {children}
     </div>
   );

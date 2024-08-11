@@ -7,6 +7,7 @@ import Button from '../../shared/Button/Button';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface MovieDetailsResponse {
   Poster: string;
@@ -74,7 +75,13 @@ const SelectedMovieDetails = () => {
 
   if (data)
     return (
-      <>
+      <motion.div
+        initial={{ x: -500 }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.3 }}
+        exit={{ x: -500 }}
+        className="absolute w-full z-20 top-0"
+      >
         <div className="bg-zinc-700 z-20  bg-opacity-20 rounded-md ">
           <Button
             onclick={() => handleClose()}
@@ -105,7 +112,13 @@ const SelectedMovieDetails = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center mt-5 ">
+        <div
+          initial={{ x: -500 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.3 }}
+          exit={{ x: -400, opacity: 0 }}
+          className="flex flex-col justify-center mt-5 "
+        >
           {selectedMovie ? (
             <Button
               onclick={() => RemoveFromFav()}
@@ -140,7 +153,7 @@ const SelectedMovieDetails = () => {
             {<BiSolidStar size={20} className="text-yellow-500" />}
           </h1>
         </div>
-      </>
+      </motion.div>
     );
 };
 
