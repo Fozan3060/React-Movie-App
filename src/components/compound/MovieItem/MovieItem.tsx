@@ -5,6 +5,7 @@ import { RiUserStarFill } from 'react-icons/ri';
 import { CgTime } from 'react-icons/cg';
 import { BiTrash } from 'react-icons/bi';
 import Button from '../../shared/Button/Button';
+import { motion } from 'framer-motion';
 
 interface MovieData {
   Poster: string;
@@ -20,9 +21,10 @@ interface MovieData {
 interface MovieItemProps {
   movie: MovieData;
   type: string;
+  id: number;
 }
 
-const MovieItem: React.FC<MovieItemProps> = ({ movie, type }) => {
+const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
   const { setSelected, setwatchMovieslist } = useMovie();
 
   const handleRemoveFromFav = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -31,7 +33,10 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type }) => {
   };
   return (
     <div>
-      <div
+      <motion.div
+        initial={{ opacity: 0, x: -500 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: id * 0.1 }}
         onClick={() => setSelected(movie.imdbID)}
         className="flex gap-6 hover:bg-zinc-700 tracking-widest transition-all duration-150 cursor-pointer items-center sm:px-10 px-8 py-5 border-b border-zinc-900"
       >
@@ -65,7 +70,7 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type }) => {
             />
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };
