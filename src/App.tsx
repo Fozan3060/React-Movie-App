@@ -17,7 +17,6 @@ import { ErrorDisplay } from './components/shared/ErrorDisplay/ErrorDisplay';
 import Loader from './components/shared/Loader/Loader';
 import { SelectedMovieSkeleton } from './components/compound/SelectedMovieSkeleton/SelectedMovieSkeleton';
 
-
 function App() {
   const { setName, name, selected } = useMovie();
   const inputElementRef = useRef<HTMLInputElement | null>(null);
@@ -76,9 +75,10 @@ function App() {
               {selected ? (
                 <SelectedMovieDetails key={selected} />
               ) : (
-                <WatchedMovieSummary />
-                <MovieWatchedList />
-             
+                <>
+                  <WatchedMovieSummary />
+                  <MovieWatchedList />
+                </>
               )}
             </Suspense>
           </ErrorBoundary>
