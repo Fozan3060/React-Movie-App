@@ -10,11 +10,13 @@ import Movielist from './components/complex/Movielist/Movielist';
 import { useMovie } from './Context/ReactMovieContext';
 import SelectedMovieDetails from './components/compound/SelectedMovieDetails/SelectedMovieDetails';
 import MovieWatchedList from './components/complex/MovieWatched/MovieWatchedList';
+import WatchedMovieSummary from './components/compound/WatchedMovieSummary/WatchedMovieSummary';
 import { Suspense, useEffect, useRef } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorDisplay } from './components/shared/ErrorDisplay/ErrorDisplay';
 import Loader from './components/shared/Loader/Loader';
 import { SelectedMovieSkeleton } from './components/compound/SelectedMovieSkeleton/SelectedMovieSkeleton';
+
 
 function App() {
   const { setName, name, selected } = useMovie();
@@ -74,7 +76,9 @@ function App() {
               {selected ? (
                 <SelectedMovieDetails key={selected} />
               ) : (
+                <WatchedMovieSummary />
                 <MovieWatchedList />
+             
               )}
             </Suspense>
           </ErrorBoundary>
