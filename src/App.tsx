@@ -10,7 +10,11 @@ import Movielist from './components/complex/Movielist/Movielist';
 import { useMovie } from './Context/ReactMovieContext';
 import SelectedMovieDetails from './components/compound/SelectedMovieDetails/SelectedMovieDetails';
 import MovieWatchedList from './components/complex/MovieWatched/MovieWatchedList';
-import { useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorDisplay } from './components/shared/ErrorDisplay/ErrorDisplay';
+import Loader from './components/shared/Loader/Loader';
+import { SelectedMovieSkeleton } from './components/compound/SelectedMovieSkeleton/SelectedMovieSkeleton';
 
 function App() {
   const { setName, name, selected } = useMovie();
@@ -50,14 +54,30 @@ function App() {
       </Header>
       <Container>
         <LeftBar>
-          <Movielist />
+          <ErrorBoundary fallback={<ErrorDisplay />} resetKeys={[name]}>
+            <Suspense fallback={<Loader />}>
+              {name ? (
+                <Movielist />
+              ) : (
+                <h1>
+                  <h1 className="text-center mt-20 text-2xl font-semibold">
+                    No Movies Searched
+                  </h1>
+                </h1>
+              )}
+            </Suspense>
+          </ErrorBoundary>
         </LeftBar>
         <Rightbar>
-          {selected ? (
-            <SelectedMovieDetails key={selected} />
-          ) : (
-            <MovieWatchedList />
-          )}
+          <ErrorBoundary fallback={<ErrorDisplay />} resetKeys={[name]}>
+            <Suspense fallback={<SelectedMovieSkeleton />}>
+              {selected ? (
+                <SelectedMovieDetails key={selected} />
+              ) : (
+                <MovieWatchedList />
+              )}
+            </Suspense>
+          </ErrorBoundary>
         </Rightbar>
       </Container>
     </>

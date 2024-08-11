@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useMovie } from '../../../Context/ReactMovieContext';
 import MovieItem from '../../compound/MovieItem/MovieItem';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 interface MovieItem {
   Poster: string;
@@ -28,32 +28,11 @@ const fetchMovie = async (name: string) => {
 const Movielist = () => {
   const { name } = useMovie();
 
-  const { data, isLoading, isError, error } = useQuery<MovieResponse>({
+  const { data } = useSuspenseQuery<MovieResponse>({
     queryKey: ['FetchMovie', name],
     queryFn: () => fetchMovie(name),
-    enabled: !!name,
   });
 
-  if (isLoading) {
-    return (
-      <h1 className="text-center mt-20 text-2xl font-semibold">Loading ....</h1>
-    );
-  }
-
-  if (isError) {
-    return (
-      <h1 className="text-center mt-20 text-2xl font-semibold">
-        ⛔ {error instanceof Error ? error.message : 'An error occurred'}
-      </h1>
-    );
-  }
-  if (!name) {
-    return (
-      <h1 className="text-center mt-20 text-2xl font-semibold">
-        No Movies Searched
-      </h1>
-    );
-  }
   if (!data || !data.Search) {
     return (
       <h1 className="text-center mt-20 text-2xl font-semibold">
