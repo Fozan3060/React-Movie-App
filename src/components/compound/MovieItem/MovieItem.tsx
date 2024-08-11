@@ -23,9 +23,8 @@ interface MovieItemProps {
 }
 
 const MovieItem: React.FC<MovieItemProps> = ({ movie, type }) => {
-  const { setSelected, selected, setwatchMovieslist } = useMovie();
+  const { setSelected, setwatchMovieslist } = useMovie();
 
-  console.log(selected, movie);
   const handleRemoveFromFav = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     setwatchMovieslist((prev) => prev.filter((Movie) => Movie !== movie));

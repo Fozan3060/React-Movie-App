@@ -11,6 +11,7 @@ import { useMovie } from './Context/ReactMovieContext';
 import SelectedMovieDetails from './components/compound/SelectedMovieDetails/SelectedMovieDetails';
 import MovieWatchedList from './components/complex/MovieWatched/MovieWatchedList';
 import { useEffect, useRef } from 'react';
+import WatchedMovieSummary from './components/compound/WatchedMovieSummary/WatchedMovieSummary';
 
 function App() {
   const { setName, name, selected } = useMovie();
@@ -56,7 +57,10 @@ function App() {
           {selected ? (
             <SelectedMovieDetails key={selected} />
           ) : (
-            <MovieWatchedList />
+            <>
+              <WatchedMovieSummary />
+              <MovieWatchedList />
+            </>
           )}
         </Rightbar>
       </Container>
