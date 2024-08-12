@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsCalendar2, BsStarFill } from 'react-icons/bs';
 import { useMovie } from '../../../Context/ReactMovieContext';
 import { RiUserStarFill } from 'react-icons/ri';
@@ -26,19 +26,23 @@ interface MovieItemProps {
 
 const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
   const { setSelected, setwatchMovieslist, selected } = useMovie();
+  const [slideout, setSlideout] = useState<boolean>(false);
 
   const handleRemoveFromFav = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setSlideout(true);
     event.stopPropagation();
-    setwatchMovieslist((prev) => prev.filter((Movie) => Movie !== movie));
+    setTimeout(() => {
+      setwatchMovieslist((prev) => prev.filter((Movie) => Movie !== movie));
+    }, 290);
   };
   return (
     <div>
       <motion.div
-        initial={selected ? { opacity: 0, x: -500 } : {}}
-        animate={selected ? { opacity: 1, x: 0 } : {}}
-        transition={selected ? { duration: 0.5, delay: id * 0.1 } : {}}
+        initial={selected ? {} : { opacity: 0, x: -500 }}
+        animate={selected ? {} : { opacity: 1, x: 0 }}
+        transition={selected ? {} : { duration: 0.5, delay: id * 0.1 }}
         onClick={() => setSelected(movie.imdbID)}
-        className="flex gap-6 hover:bg-zinc-700 tracking-widest transition-all duration-150 cursor-pointer items-center sm:px-10 px-8 py-5 border-b border-zinc-900"
+        className={`${slideout && 'animate-slideout'} flex gap-6 hover:bg-zinc-700 tracking-widest transition-all duration-150 cursor-pointer items-center sm:px-10 px-8 py-5 border-b border-zinc-900`}
       >
         <img src={movie.Poster} className="w-11 h-16" alt="" />
         <div className="space-y-1">

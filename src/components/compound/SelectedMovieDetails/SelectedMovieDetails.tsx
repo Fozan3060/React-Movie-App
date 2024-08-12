@@ -34,7 +34,7 @@ const SelectedMovieDetails = () => {
     handleClose,
     RemoveFromFav,
   } = useMovie();
-  const [slideout, setSlideout] = useState(false);
+  const [slideout, setSlideout] = useState<boolean>(false);
 
   const addToFav = (data: MovieDetailsResponse) => {
     const obj = {
@@ -47,7 +47,10 @@ const SelectedMovieDetails = () => {
       userRating: rating,
     };
     setwatchMovieslist((prev) => [...prev, obj]);
-    handleClose();
+    setSlideout(true);
+    setTimeout(() => {
+      handleClose();
+    }, 290);
   };
 
   const ChangeRating = () => {
