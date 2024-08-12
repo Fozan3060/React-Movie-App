@@ -79,7 +79,6 @@ const SelectedMovieDetails = () => {
         initial={{ x: -500 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.3 }}
-        exit={{ x: -500 }}
         className="absolute w-full z-20 top-0"
       >
         <div className="bg-zinc-700 z-20  bg-opacity-20 rounded-md ">
@@ -112,13 +111,7 @@ const SelectedMovieDetails = () => {
             </div>
           </div>
         </div>
-        <div
-          initial={{ x: -500 }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.3 }}
-          exit={{ x: -400, opacity: 0 }}
-          className="flex flex-col justify-center mt-5 "
-        >
+        <div className="flex flex-col justify-center mt-5 ">
           {selectedMovie ? (
             <Button
               onclick={() => RemoveFromFav()}
