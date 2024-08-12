@@ -34,6 +34,7 @@ const SelectedMovieDetails = () => {
     handleClose,
     RemoveFromFav,
   } = useMovie();
+  const [slideout, setSlideout] = useState(false);
 
   const addToFav = (data: MovieDetailsResponse) => {
     const obj = {
@@ -79,11 +80,16 @@ const SelectedMovieDetails = () => {
         initial={{ x: -500 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.3 }}
-        className="absolute w-full z-20 top-0"
+        className={`${slideout ? 'animate-slideout' : ''} absolute w-full h-full bg-zinc-800 z-20 top-0`}
       >
         <div className="bg-zinc-700 z-20  bg-opacity-20 rounded-md ">
           <Button
-            onclick={() => handleClose()}
+            onclick={() => {
+              setSlideout(true);
+              setTimeout(() => {
+                handleClose();
+              }, 290);
+            }}
             className="border bg-white absolute rounded-full hover:transition-all duration-200 hover:translate-x-2"
             description=""
             icon={<GoArrowLeft size={26} color="black" />}

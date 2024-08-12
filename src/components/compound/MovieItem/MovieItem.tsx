@@ -25,7 +25,7 @@ interface MovieItemProps {
 }
 
 const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
-  const { setSelected, setwatchMovieslist } = useMovie();
+  const { setSelected, setwatchMovieslist, selected } = useMovie();
 
   const handleRemoveFromFav = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -34,9 +34,9 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
   return (
     <div>
       <motion.div
-        initial={{ opacity: 0, x: -500 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: id * 0.1 }}
+        initial={selected ? { opacity: 0, x: -500 } : {}}
+        animate={selected ? { opacity: 1, x: 0 } : {}}
+        transition={selected ? { duration: 0.5, delay: id * 0.1 } : {}}
         onClick={() => setSelected(movie.imdbID)}
         className="flex gap-6 hover:bg-zinc-700 tracking-widest transition-all duration-150 cursor-pointer items-center sm:px-10 px-8 py-5 border-b border-zinc-900"
       >

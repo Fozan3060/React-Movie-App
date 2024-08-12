@@ -75,16 +75,15 @@ function App() {
             fallback={<ErrorDisplay />}
             resetKeys={[name]}
           >
-            {selected ? (
+            {selected && (
               <Suspense key={'1'} fallback={<SelectedMovieSkeleton />}>
                 <SelectedMovieDetails key={selected} />
               </Suspense>
-            ) : (
-              <>
-                <WatchedMovieSummary key={'3'} />
-                <MovieWatchedList key={'4'} />
-              </>
             )}
+            <>
+              <WatchedMovieSummary key={'3'} />
+              <MovieWatchedList key={'4'} />
+            </>
           </ErrorBoundary>
         </Rightbar>
       </Container>
