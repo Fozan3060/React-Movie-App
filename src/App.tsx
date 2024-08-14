@@ -3,16 +3,22 @@ import Header from './components/complex/Header/Header';
 import LeftBar from './components/complex/LeftBar/LeftBar';
 import Container from './components/complex/Container/Container';
 import Rightbar from './components/complex/RightBar/RightBar';
-import Movielist from './components/complex/Movielist/Movielist';
 import { useMovie } from './Context/ReactMovieContext';
-import SelectedMovieDetails from './components/compound/SelectedMovieDetails/SelectedMovieDetails';
 import MovieWatchedList from './components/complex/MovieWatched/MovieWatchedList';
 import WatchedMovieSummary from './components/compound/WatchedMovieSummary/WatchedMovieSummary';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorDisplay } from './components/shared/ErrorDisplay/ErrorDisplay';
 import Loader from './components/shared/Loader/Loader';
 import { SelectedMovieSkeleton } from './components/compound/SelectedMovieSkeleton/SelectedMovieSkeleton';
+
+const SelectedMovieDetails = lazy(
+  () =>
+    import('./components/compound/SelectedMovieDetails/SelectedMovieDetails')
+);
+const Movielist = lazy(
+  () => import('./components/complex/Movielist/Movielist')
+);
 
 function App() {
   const { name, selected } = useMovie();
