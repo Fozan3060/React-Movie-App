@@ -4,10 +4,9 @@ import { GoArrowLeft } from 'react-icons/go';
 import CustomStar from '../../shared/CustomStarRating/CustomStarRating';
 import { useMovie } from '../../../Context/ReactMovieContext';
 import Button from '../../shared/Button/Button';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import useFetchMovieDetailsHook from '../../CustomHooks/FetchMovieDetailsHook';
 
 interface MovieDetailsResponse {
   Poster: string;
@@ -19,13 +18,6 @@ interface MovieDetailsResponse {
   Genre: string;
 }
 
-const fetchMovieDetails = async (selected: string) => {
-  const response = await axios.get(
-    `http://www.omdbapi.com/?apikey=a3d0635c&i=${selected}`
-  );
-  return response.data;
-};
-
 const SelectedMovieDetails = () => {
   const {
     selected,
@@ -35,7 +27,7 @@ const SelectedMovieDetails = () => {
     RemoveFromFav,
   } = useMovie();
   const [slideout, setSlideout] = useState<boolean>(false);
-
+  const { data } = useFetchMovieDetailsHook({ selected });
   const addToFav = (data: MovieDetailsResponse) => {
     const obj = {
       imdbID: selected,
@@ -67,10 +59,7 @@ const SelectedMovieDetails = () => {
     }
   };
   console.log(watchMovieslist);
-  const { data } = useSuspenseQuery<MovieDetailsResponse>({
-    queryKey: ['FetchMovieDetails', selected],
-    queryFn: () => fetchMovieDetails(selected),
-  });
+
   const selectedMovie =
     watchMovieslist.find((movie) => movie.imdbID === selected) ||
     watchMovieslist.find((movie) => movie.imdbID === data?.imdbID);

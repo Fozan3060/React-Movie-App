@@ -15,7 +15,9 @@ const WatchedMovieSummary = () => {
       console.log('jss');
       const { totalImdbRating, totalUserRating, totalRuntime } = movies.reduce(
         (acc, movie) => {
-          acc.totalImdbRating += Number(movie.imdbRating);
+          acc.totalImdbRating += Number(
+            movie.imdbRating === 'N/A' ? 0 : movie.imdbRating
+          );
           acc.totalUserRating += movie.userRating;
           acc.totalRuntime += Number(movie.Runtime.replace('min', ''));
           return acc;
