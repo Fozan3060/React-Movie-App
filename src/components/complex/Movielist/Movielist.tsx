@@ -43,8 +43,13 @@ const Movielist = () => {
 
   return (
     <div>
-      {data.Search.map((item) => (
-        <MovieItem key={item.imdbID} type="NonWatched" movie={item} />
+      {data.Search.map((item, index) => (
+        <MovieItem
+          key={item.imdbID}
+          type="NonWatched"
+          id={index}
+          movie={item}
+        />
       ))}
     </div>
   );

@@ -70,17 +70,20 @@ function App() {
           </ErrorBoundary>
         </LeftBar>
         <Rightbar>
-          <ErrorBoundary fallback={<ErrorDisplay />} resetKeys={[name]}>
-            <Suspense fallback={<SelectedMovieSkeleton />}>
-              {selected ? (
+          <ErrorBoundary
+            key={'2'}
+            fallback={<ErrorDisplay />}
+            resetKeys={[name]}
+          >
+            {selected && (
+              <Suspense key={'1'} fallback={<SelectedMovieSkeleton />}>
                 <SelectedMovieDetails key={selected} />
-              ) : (
-                <>
-                  <WatchedMovieSummary />
-                  <MovieWatchedList />
-                </>
-              )}
-            </Suspense>
+              </Suspense>
+            )}
+            <>
+              <WatchedMovieSummary key={'3'} />
+              <MovieWatchedList key={'4'} />
+            </>
           </ErrorBoundary>
         </Rightbar>
       </Container>

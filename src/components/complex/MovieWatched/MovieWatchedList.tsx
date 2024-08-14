@@ -11,7 +11,7 @@ const MovieWatchedList = () => {
         watchMovieslist.map((item, index) => {
           return (
             <>
-              <MovieItem key={index} type={'Watched'} movie={item} />
+              <MovieItem key={index} id={index} type={'Watched'} movie={item} />
             </>
           );
         })

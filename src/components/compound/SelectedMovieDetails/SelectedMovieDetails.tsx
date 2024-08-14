@@ -7,6 +7,7 @@ import Button from '../../shared/Button/Button';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface MovieDetailsResponse {
   Poster: string;
@@ -33,6 +34,7 @@ const SelectedMovieDetails = () => {
     handleClose,
     RemoveFromFav,
   } = useMovie();
+  const [slideout, setSlideout] = useState<boolean>(false);
 
   const addToFav = (data: MovieDetailsResponse) => {
     const obj = {
@@ -45,7 +47,10 @@ const SelectedMovieDetails = () => {
       userRating: rating,
     };
     setwatchMovieslist((prev) => [...prev, obj]);
-    handleClose();
+    setSlideout(true);
+    setTimeout(() => {
+      handleClose();
+    }, 290);
   };
 
   const ChangeRating = () => {
@@ -74,10 +79,20 @@ const SelectedMovieDetails = () => {
 
   if (data)
     return (
-      <>
+      <motion.div
+        initial={{ x: -500 }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.3 }}
+        className={`${slideout ? 'animate-slideout' : ''} absolute w-full h-full bg-zinc-800 z-20 top-0`}
+      >
         <div className="bg-zinc-700 z-20  bg-opacity-20 rounded-md ">
           <Button
-            onclick={() => handleClose()}
+            onclick={() => {
+              setSlideout(true);
+              setTimeout(() => {
+                handleClose();
+              }, 290);
+            }}
             className="border bg-white absolute rounded-full hover:transition-all duration-200 hover:translate-x-2"
             description=""
             icon={<GoArrowLeft size={26} color="black" />}
@@ -140,7 +155,7 @@ const SelectedMovieDetails = () => {
             {<BiSolidStar size={20} className="text-yellow-500" />}
           </h1>
         </div>
-      </>
+      </motion.div>
     );
 };
 
