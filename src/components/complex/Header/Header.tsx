@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <div className="sm:w-full pt-7 pr-5 pl-5">
       <div className="bg-violet-600 flex place-items-center justify-between p-5 py-4 rounded-md">
-        <Logo />
+        <Logo>🍿</Logo>
         <Input
           setname={setName}
           name={name}
@@ -38,7 +38,9 @@ const Header = () => {
           placeholder="Search Movie"
           ref={inputElementRef}
         />
-        <Results />
+        <div className="sm:block  hidden">
+          <Results />
+        </div>
       </div>
     </div>
   );

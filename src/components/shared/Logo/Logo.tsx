@@ -1,10 +1,8 @@
-import MovieLogo from './MovieLogo.png';
+import { ReactNode } from 'react';
 
-const Logo = () => {
+const Logo = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="Logo">
-      <img src={MovieLogo} className="h-12 w-14" alt="" />
-    </div>
+    <div className="sm:text-5xl relative right-3 text-4xl">{children}</div>
   );
 };
 
