@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsHourglass, BsStarFill } from 'react-icons/bs';
 import { RiListView, RiUser2Fill } from 'react-icons/ri';
 import { MovieItem, useMovie } from '../../../Context/ReactMovieContext';

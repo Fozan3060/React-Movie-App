@@ -68,12 +68,11 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
 
         {type == 'Watched' && (
           <div className="flex justify-end">
-            <Button
-              description=""
-              className=""
-              onclick={handleRemoveFromFav}
-              icon={<BiTrash className="hover:text-red-500" size={27} />}
-            />
+            <Button description="" className="" onclick={handleRemoveFromFav}>
+              <span className="hover:text-red-500">
+                <BiTrash size={27} />
+              </span>
+            </Button>
           </div>
         )}
       </motion.div>
