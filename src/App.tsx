@@ -26,6 +26,7 @@ function App() {
   return (
     <>
       <Header />
+      {/* <MobileNavbar/> */}
       <Container>
         <LeftBar>
           <ErrorBoundary fallback={<ErrorDisplay />} resetKeys={[name]}>
@@ -33,7 +34,7 @@ function App() {
               {name ? (
                 <Movielist />
               ) : (
-                <h1>
+                <h1 id="about">
                   <h1 className="text-center mt-20 text-2xl font-semibold">
                     No Movies Searched
                   </h1>

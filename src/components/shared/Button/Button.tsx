@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 
 interface ButtonProps {
   icon?: ReactNode;
@@ -16,11 +17,15 @@ const Button: React.FC<ButtonProps> = ({
   onclick,
 }) => {
   return (
-    <button className={className} onClick={onclick}>
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      className={className}
+      onClick={onclick}
+    >
       {description}
       {children}
       {icon}
-    </button>
+    </motion.button>
   );
 };
 
