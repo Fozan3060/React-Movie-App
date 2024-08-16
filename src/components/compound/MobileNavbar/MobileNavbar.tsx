@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Button from '../../shared/Button/Button';
 import { RiMenu2Line, RiMenu3Fill } from 'react-icons/ri';

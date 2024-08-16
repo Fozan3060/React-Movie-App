@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Logo from '../../shared/Logo/Logo';
 import Input from '../../shared/Input/Input';
 import Results from '../../compound/Results/Results';

@@ -141,7 +141,7 @@ const SelectedMovieDetails = () => {
           <h1 className="text-center flex items-center m-auto mt-2 gap-2  ">
             {selectedMovie ? 'You Rated : ' : 'Rating : '}
             <span className="text-purple-600 ">{rating} </span>{' '}
-            {<BiSolidStar size={20} className="text-yellow-500" />}
+            <span className="text-yellow-500">{<BiSolidStar size={20} />}</span>
           </h1>
         </div>
       </motion.div>
