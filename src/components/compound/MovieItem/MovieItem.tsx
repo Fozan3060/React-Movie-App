@@ -36,35 +36,36 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
     }, 290);
   };
   return (
-    <div>
-      <motion.div
-        initial={selected ? {} : { opacity: 0, x: -500 }}
-        animate={selected ? {} : { opacity: 1, x: 0 }}
-        transition={selected ? {} : { duration: 0.5, delay: id * 0.1 }}
-        onClick={() => setSelected(movie.imdbID)}
-        className={`${slideout && 'animate-slideout'} flex gap-6 hover:bg-zinc-700 tracking-widest transition-all duration-150 cursor-pointer items-center sm:px-10 px-8 py-5 border-b border-zinc-900`}
-      >
+    <motion.div
+      className={`border-b ${slideout && 'animate-slideout'}  cursor-pointer transition-all duration-150  border-zinc-900 hover:bg-zinc-700 sm:px-10 px-8 py-5`}
+      initial={selected ? {} : { opacity: 0, x: -500 }}
+      animate={selected ? {} : { opacity: 1, x: 0 }}
+      transition={selected ? {} : { duration: 0.5, delay: id * 0.1 }}
+      onClick={() => setSelected(movie.imdbID)}
+    >
+      <motion.div className="flex gap-6 items-center tracking-widest">
         <img src={movie.Poster} className="w-11 h-16" alt="" />
         <div className="space-y-1 w-96">
           <h1 className="font-bold">{movie.Title}</h1>
-          <div className="flex items-center gap-2">
+          <div className="flex  items-center gap-2">
             {type == 'NonWatched' && (
               <>
                 <BsCalendar2 /> {movie.Year}
               </>
             )}
-            {type == 'Watched' && (
-              <>
-                <BsStarFill color="yellow" />
-                {movie.imdbRating}
-                <RiUserStarFill color="yellow" />
-                {movie.userRating}
-                <CgTime />
-                {movie.Runtime}
-              </>
-            )}
           </div>
+          {type == 'Watched' && (
+            <div className="hidden m-auto sm:flex  justify-center gap-2 items-center">
+              <BsStarFill color="yellow" />
+              {movie.imdbRating}
+              <RiUserStarFill color="yellow" />
+              {movie.userRating}
+              <CgTime />
+              {movie.Runtime}
+            </div>
+          )}
         </div>
+
         {type == 'Watched' && (
           <div className="flex justify-end">
             <Button
@@ -76,7 +77,17 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
           </div>
         )}
       </motion.div>
-    </div>
+      {type == 'Watched' && (
+        <div className="flex m-auto sm:hidden  justify-center gap-2 items-center">
+          <BsStarFill color="yellow" />
+          {movie.imdbRating}
+          <RiUserStarFill color="yellow" />
+          {movie.userRating}
+          <CgTime />
+          {movie.Runtime}
+        </div>
+      )}
+    </motion.div>
   );
 };
 

@@ -6,7 +6,7 @@ const MovieWatchedList = () => {
   localStorage.setItem('WatchList', JSON.stringify(watchMovieslist));
 
   return (
-    <div>
+    <div id="FavMovie">
       {watchMovieslist.length !== 0 ? (
         watchMovieslist.map((item, index) => {
           return (
