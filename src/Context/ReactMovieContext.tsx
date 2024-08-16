@@ -12,6 +12,8 @@ interface MovieContextType {
   setName: (name: string) => void;
   selected: string;
   setSelected: (selected: string) => void;
+  results: number;
+  setResults: (results: number) => void;
   watchMovieslist: MovieItem[];
   setwatchMovieslist: Dispatch<SetStateAction<MovieItem[]>>;
   handleClose: () => void;
@@ -41,6 +43,7 @@ export const MovieContextProvider = ({
 }: MovieContextProviderProps) => {
   const [name, setName] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
+  const [results, setResults] = useState<number>(0);
   const [watchMovieslist, setwatchMovieslist] = useState<MovieItem[]>(
     () => parsedInitialValue
   );
@@ -58,6 +61,8 @@ export const MovieContextProvider = ({
       value={{
         name,
         setName,
+        results,
+        setResults,
         selected,
         setSelected,
         watchMovieslist,
