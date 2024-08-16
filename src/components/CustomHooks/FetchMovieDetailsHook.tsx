@@ -13,7 +13,7 @@ interface MovieDetailsResponse {
 
 const fetchMovieDetails = async (selected: string) => {
   const response = await axios.get(
-    `http://www.omdbapi.com/?apikey=a3d0635c&i=${selected}`
+    `https://www.omdbapi.com/?apikey=a3d0635c&i=${selected}`
   );
   return response.data;
 };
