@@ -5,6 +5,7 @@ interface InputProps {
   setname: (value: string) => void;
   placeholder: string;
   className?: string;
+  onClick?: () => void;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -14,6 +15,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       name,
       setname,
       placeholder,
+      onClick,
     },
     ref
   ) => (
@@ -25,6 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         placeholder={placeholder}
         type="text"
         ref={ref}
+        onClick={onClick}
       />
     </div>
   )
