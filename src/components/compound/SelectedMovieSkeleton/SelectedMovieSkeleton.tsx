@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsFillStarFill } from 'react-icons/bs';
 import SkeletonLoader from '../../shared/SkeletonLoader/SkeletonLoader';
 
@@ -13,7 +12,9 @@ export const SelectedMovieSkeleton = () => {
             <div className="h-5 w-full bg-gray-400"></div>
             <div className="h-5 w-full bg-gray-400"></div>
             <div className="flex gap-2 items-center">
-              <BsFillStarFill size={24} className="text-gray-400" />
+              <span className="text-gray-400">
+                <BsFillStarFill size={24} />
+              </span>
               <div className="h-5 w-full bg-gray-400"></div>
             </div>
           </div>
@@ -23,13 +24,17 @@ export const SelectedMovieSkeleton = () => {
           <div className="flex m-auto gap-2">
             {Array.from(Array(Number(10)).keys()).map(() => (
               <div className="">
-                <BsFillStarFill size={24} className="text-gray-400" />
+                <span className="text-gray-400">
+                  <BsFillStarFill size={24} />
+                </span>
               </div>
             ))}
           </div>
           <div className="flex h-22 gap-2 w-32 m-auto items-center">
             <div className="h-5 w-full  bg-gray-400"></div>:
-            <BsFillStarFill size={32} className="text-gray-400" />
+            <span className="text-gray-400">
+              <BsFillStarFill size={32} />
+            </span>
           </div>
         </div>
       </SkeletonLoader>

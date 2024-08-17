@@ -11,6 +11,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorDisplay } from './components/shared/ErrorDisplay/ErrorDisplay';
 import Loader from './components/shared/Loader/Loader';
 import { SelectedMovieSkeleton } from './components/compound/SelectedMovieSkeleton/SelectedMovieSkeleton';
+import Footer from './components/compound/Footer/Footer';
 
 const SelectedMovieDetails = lazy(
   () =>
@@ -61,6 +62,7 @@ function App() {
           </ErrorBoundary>
         </Rightbar>
       </Container>
+      <Footer />
     </>
   );
 }

@@ -72,9 +72,9 @@ const SelectedMovieDetails = () => {
         initial={{ x: -500 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.3 }}
-        className={`${slideout ? 'animate-slideout' : ''} absolute w-full h-full bg-zinc-800 z-20 top-0`}
+        className={`${slideout ? 'animate-slideout' : ''} absolute w-full h-full  bg-zinc-800 z-20 top-0`}
       >
-        <div className="bg-zinc-700 z-20  bg-opacity-20 rounded-md ">
+        <div className="bg-zinc-700 z-20 relative bottom-8 sm:bottom-0 bg-opacity-20 rounded-md ">
           <Button
             onclick={() => {
               setSlideout(true);
@@ -82,7 +82,7 @@ const SelectedMovieDetails = () => {
                 handleClose();
               }, 290);
             }}
-            className="border bg-white absolute rounded-full hover:transition-all duration-200 hover:translate-x-2"
+            className="border bg-white sticky sm:absolute top-0 rounded-full hover:transition-all duration-200 hover:translate-x-2"
             description=""
             icon={<GoArrowLeft size={26} color="black" />}
           />
@@ -113,20 +113,20 @@ const SelectedMovieDetails = () => {
           {selectedMovie ? (
             <Button
               onclick={() => RemoveFromFav()}
-              className="rounded-2xl mb-5 font-semibold bg-red-500 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
+              className="rounded-2xl mb-5 w-[90%] m-auto font-semibold bg-red-500 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
               description="Remove From Favourites"
             />
           ) : (
             <Button
               onclick={() => addToFav(data)}
-              className="rounded-2xl mb-5 font-semibold bg-purple-600 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
+              className="rounded-2xl mb-5 w-[90%] m-auto font-semibold bg-purple-600 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
               description="Add To Favourites"
             />
           )}
           {selectedMovie && rating !== selectedMovie.userRating && (
             <button
               onClick={() => ChangeRating()}
-              className="rounded-2xl mt-2 mb-5 font-semibold bg-purple-700 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
+              className="rounded-2xl mt-2 mb-5 w-[90%] m-auto font-semibold bg-purple-700 px-12 py-2 hover:shadow-zinc-600 hover:shadow-md hover:transition-all duration-200 hover:-translate-y-0.5"
             >
               Rate Again
             </button>
@@ -138,10 +138,10 @@ const SelectedMovieDetails = () => {
             rating={rating}
           />
 
-          <h1 className="text-center flex items-center m-auto mt-2 gap-2  ">
+          <h1 className="text-center flex items-center m-auto mt-2 mb-5 gap-2  ">
             {selectedMovie ? 'You Rated : ' : 'Rating : '}
             <span className="text-purple-600 ">{rating} </span>{' '}
-            {<BiSolidStar size={20} className="text-yellow-500" />}
+            <span className="text-yellow-500">{<BiSolidStar size={20} />}</span>
           </h1>
         </div>
       </motion.div>

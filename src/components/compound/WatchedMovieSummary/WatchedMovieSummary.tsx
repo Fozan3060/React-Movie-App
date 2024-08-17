@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsHourglass, BsStarFill } from 'react-icons/bs';
 import { RiListView, RiUser2Fill } from 'react-icons/ri';
 import { MovieItem, useMovie } from '../../../Context/ReactMovieContext';
@@ -18,8 +17,11 @@ const WatchedMovieSummary = () => {
           acc.totalImdbRating += Number(
             movie.imdbRating === 'N/A' ? 0 : movie.imdbRating
           );
+          // movie.Runtime.replace('min', '')
           acc.totalUserRating += movie.userRating;
-          acc.totalRuntime += Number(movie.Runtime.replace('min', ''));
+          acc.totalRuntime += Number(
+            movie.Runtime === 'N/A' ? 0 : movie.Runtime.replace('min', '')
+          );
           return acc;
         },
         { totalImdbRating: 0, totalUserRating: 0, totalRuntime: 0 }
