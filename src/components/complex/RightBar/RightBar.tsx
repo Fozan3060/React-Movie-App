@@ -8,7 +8,7 @@ const Rightbar: React.FC<Rightbar> = ({ children }) => {
   const { selected } = useMovie();
   return (
     <div
-      className={`bg-zinc-800  ${selected ? 'h-[40rem]' : 'h-80'} relative scrollbar w-[95%] sm:w-[27rem] overflow-y-auto sm:h-[35rem] rounded-md`}
+      className={`bg-zinc-800  ${selected ? 'h-[32rem]' : 'h-80'} relative scrollbar w-[95%] sm:w-[27rem] overflow-y-auto sm:h-[35rem] rounded-md`}
     >
       {children}
     </div>

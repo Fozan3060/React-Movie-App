@@ -6,6 +6,7 @@ import { CgTime } from 'react-icons/cg';
 import { BiTrash } from 'react-icons/bi';
 import Button from '../../shared/Button/Button';
 import { motion } from 'framer-motion';
+import { scroller } from 'react-scroll';
 
 interface MovieData {
   Poster: string;
@@ -41,7 +42,14 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
       initial={selected ? {} : { opacity: 0, x: -500 }}
       animate={selected ? {} : { opacity: 1, x: 0 }}
       transition={selected ? {} : { duration: 0.5, delay: id * 0.1 }}
-      onClick={() => setSelected(movie.imdbID)}
+      onClick={() => {
+        setSelected(movie.imdbID);
+        scroller.scrollTo('FavMovie', {
+          duration: 800,
+          delay: 0,
+          smooth: 'easeInOutQuart',
+        });
+      }}
     >
       <motion.div className="flex gap-6 items-center tracking-widest">
         <img src={movie.Poster} className="w-11 h-16" alt="" />
