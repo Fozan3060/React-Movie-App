@@ -16,7 +16,7 @@ Movie App build on React and Typescript
 
 # To Start Project
 
-- run `npm start`
+- run `npm run dev`
 
 ## Features List
 

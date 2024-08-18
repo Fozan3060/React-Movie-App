@@ -44,11 +44,13 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie, type, id }) => {
       transition={selected ? {} : { duration: 0.5, delay: id * 0.1 }}
       onClick={() => {
         setSelected(movie.imdbID);
-        scroller.scrollTo('FavMovie', {
-          duration: 800,
-          delay: 0,
-          smooth: 'easeInOutQuart',
-        });
+        if (window.innerWidth < 768) {
+          scroller.scrollTo('FavMovie', {
+            duration: 800,
+            delay: 0,
+            smooth: 'easeInOutQuart',
+          });
+        }
       }}
     >
       <motion.div className="flex gap-6 items-center tracking-widest">
